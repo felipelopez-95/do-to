@@ -1,6 +1,6 @@
 import TaskCard from './TaskCard'
 
-const TaskColumn = ({ title, tasks }) =>{
+const TaskColumn = ({ title, tasks, onTaskClick }) =>{
 
     const statusColor = {
         "Pendiente": "bg-gray-400",
@@ -15,9 +15,8 @@ const TaskColumn = ({ title, tasks }) =>{
             {tasks.map(task => (
                 <TaskCard
                     key={task.id}
-                    name={task.name}
-                    status={task.status}
-                    date={task.date}
+                    task={task}
+                    onClickCard={onTaskClick} // Se la pasamos a la Card
                 />
             ))}
         </div>
