@@ -1,33 +1,46 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Board from './components/kanban/Board'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([
+  {
+    id: "t-101",
+    name: "Configurar entorno de desarrollo",
+    description: "Instalar dependencias de React, configurar Vite y ESLint.",
+    status: "Terminado",
+    date: "2026-01-10",
+    worked: 120 // minutos trabajados
+  },
+  {
+    id: "t-102",
+    name: "Diseñar arquitectura de carpetas",
+    description: "Definir dónde irán los componentes, hooks y servicios.",
+    status: "En proceso",
+    date: "2026-01-12",
+    worked: 45
+  },
+  {
+    id: "t-103",
+    name: "Crear componentes de la UI",
+    description: "Desarrollar botones, inputs y tarjetas siguiendo el diseño.",
+    status: "Pendiente",
+    date: "2026-01-15",
+    worked: 0
+  },
+  {
+    id: "t-104",
+    name: "Integración con API",
+    description: "Conectar los formularios con el backend para guardar datos.",
+    status: "Pendiente",
+    date: "2026-01-18",
+    worked: 0
+  }
+])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Board list={tasks} />
     </>
   )
 }
