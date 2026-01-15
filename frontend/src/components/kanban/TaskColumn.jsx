@@ -8,10 +8,22 @@ const TaskColumn = ({ title, tasks, onTaskClick }) =>{
         "Terminado": "bg-red-400"
     }
 
+    const statusIcon = {
+        "Pendiente": "radio_button_unchecked",
+        "En proceso": "arrow_circle_right",
+        "Terminado": "check_circle"
+    }
+
    return (
-    <div className={`${statusColor[title]}`}>
-        <h1>{title}</h1>
-        <div>
+    <div className={`shrink-0 rounded-lg p-3 ${statusColor[title]} min-w-64 max-w-64`}>
+
+        <h3>
+            <span className="material-symbols-outlined pb-3">
+                {statusIcon[title]}
+            </span>
+            {title}
+        </h3>
+        <div className="flex flex-col gap-2">
             {tasks.map(task => (
                 <TaskCard
                     key={task.id}

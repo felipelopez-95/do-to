@@ -3,7 +3,7 @@ import TaskColumn from "./TaskColumn"
 const Board = ({ list, handleOpenModal }) => {
 
     return (
-        <div className="flex gap-4 p-4">
+        <div className="flex flex-nowrap overflow-x-auto snap-x gap-4 m-2 lg:m-4">
             <TaskColumn
                 title="Pendiente"
                 tasks={list.filter(task => task.status === "Pendiente")}
