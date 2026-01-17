@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Board from './components/kanban/Board'
 import Modal from './components/kanban/Modal'
+import TaskForm from './components/TaskForm'
 import './App.css'
 
 function App() {
@@ -38,7 +39,17 @@ function App() {
       worked: 0
     }
   ])
+  // Mostrar modal de la tarea seleccionada
   const [selectedTask, setSelectedTask] = useState(null)
+  // Mostrar modal de agregar tarea
+  const [showForm, setShowForm] = useState(null)
+
+  const handleAddTask = (task) => {
+    setTasks((prevTasks) => [...prevTasks, task])
+    console.log(task)
+    setShowForm(null)
+
+  }
 
   const handleOpenModal = (task) => {
     console.log("¡Click recibido en App! Los datos de la tarea son:", task)
@@ -47,8 +58,23 @@ function App() {
 
   return (
     <>
-      <Board list={tasks} handleOpenModal={handleOpenModal}/>
+      {/* Abrir modal para agregar una tarea */}
+      <button
+        className="cursor-pointer rounded-lg bg-green-900 p-2"
+        onClick={() => setShowForm(true)}
 
+      >
+        Añadir Tarea
+      </button>
+      {showForm !== null && (
+        <TaskForm
+          handleAddTask={handleAddTask}
+          onClose={() => setShowForm(null)}
+        />
+      )}
+
+      {/* Abrir modal para mostrar la tarea */}
+      <Board list={tasks} handleOpenModal={handleOpenModal} />
       {selectedTask !== null && (
         <Modal
           task={selectedTask}
